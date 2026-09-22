@@ -22,9 +22,6 @@ Each finding includes useful details such as the page URL, image source, screen 
 
 ImageLens can scan public pages and pages that require sign-in. It runs on your computer and supports desktop and mobile screen sizes.
 
-> [!IMPORTANT]
-> ImageLens helps you find issues, but it cannot confirm full accessibility compliance. A person should still review whether alternative text is useful and correct for its context.
-
 ## Screenshots
 
 ### Home
@@ -190,6 +187,9 @@ npm run test:design       # Run theme, keyboard, and responsive design tests
 ```
 
 Test files are saved in `test-output/` and are not added to Git.
+
+> [!IMPORTANT]
+> ImageLens provides detailed automated checks and evidence to support accessibility reviews. A final human review helps confirm that alternative text clearly communicates each image's purpose and context.
 
 ## Release history
 
