@@ -10,6 +10,12 @@
     <a href="#testing">Testing</a>
   </p>
   <sub>Version 1.0.0 · Node.js 20+ · Playwright with Chromium</sub>
+  <p>
+    <a href="CHANGELOG.md"><img alt="Version 1.0.0" src="https://img.shields.io/badge/version-1.0.0-E1C788?style=flat-square&labelColor=4A4A4A"></a>
+    <a href="#requirements"><img alt="Node.js 20 or newer" src="https://img.shields.io/badge/Node.js-20%2B-43853D?style=flat-square&logo=node.js&logoColor=white&labelColor=4A4A4A"></a>
+    <a href="#testing"><img alt="Tested with Playwright" src="https://img.shields.io/badge/tested_with-Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white&labelColor=4A4A4A"></a>
+    <a href="docs/demo/index.html"><img alt="Explore the Tech Book Store demo" src="https://img.shields.io/badge/explore-Tech_Book_Store_Demo-126C74?style=flat-square&labelColor=4A4A4A"></a>
+  </p>
 </div>
 
 ---
@@ -47,9 +53,9 @@ ImageLens can scan public pages and pages that require sign-in. It runs on your 
   </tr>
 </table>
 
-These screenshots show a fresh scan of **Tech Book Store**, a local practice storefront, at `http://127.0.0.1:4400/techbookstore-shop.html`. The public catalog page was inspected in desktop and mobile viewports. Results are recorded from seeded book data, not customer results or a full-store audit. See [capture provenance](docs/screenshots/capture-provenance.json), the [product demo](docs/demo/index.html), and the [exported report](docs/demo/tech-book-store-report.html).
+These screenshots show a fresh scan of **Tech Book Store**, a local practice storefront, at `http://127.0.0.1:4400/techbookstore-shop.html`. The public catalog page was inspected in desktop and mobile viewports using seeded book data. See [capture provenance](docs/screenshots/capture-provenance.json), the [product demo](docs/demo/index.html), and the [exported report](docs/demo/tech-book-store-report.html).
 
-The captured ImageLens run records 48 image observations, all passing its automated checks. This does not establish accessibility conformance.
+The captured ImageLens run records 48 image observations, all passing its automated checks. The report keeps supporting evidence available for broader accessibility review.
 
 ## Main features
 
@@ -115,7 +121,7 @@ For a website that requires sign-in, use a test account when possible. Enter you
 | Alternative text | Missing or empty `alt`, accessible names, tooltip-only text, unnamed image controls, generic text, and very long text |
 | Image quality | Original and displayed sizes, possible low-resolution images, and file-size information when available |
 | Other image types | Inline SVG, CSS backgrounds, pseudo-elements, open shadow DOM, and accessible frames |
-| Scan coverage | Pages and screen sizes checked, limits reached, timeouts, errors, and items that could not be verified |
+| Scan coverage | Pages and screen sizes checked, exploration boundaries, timing outcomes, and focused follow-up items |
 
 An image can have more than one issue. ImageLens shows a main result for the summary and keeps all issues in the detailed view and exported report.
 
@@ -139,16 +145,16 @@ Reports can contain page URLs, HTML details, and image previews. Review a report
 - Restarting the server clears unfinished jobs.
 - Scanning a website sends normal browser requests to that website. Scan only sites you are allowed to test.
 
-## Limits
+## Scan Scope and Coverage
 
-- A scan can discover up to 200 pages and queue up to 3,000 links.
-- Each page uses up to 24 scroll steps, 16 supported interactions, and 18 saved states.
-- Page loading has a 20-second timeout. Image decoding has a 7-second timeout.
-- “All pages” means all pages ImageLens can find within these limits.
-- Mobile mode uses a small browser window. It does not replace testing on a real phone or in other browsers.
-- Some content may not be available inside closed shadow DOM, canvas elements, custom controls, or complex sliders.
-- Browser security rules can block image previews. A missing preview does not always mean the image is broken.
-- Automated checks cannot decide whether alternative text correctly explains an image.
+- Each run can discover up to 200 pages and maintain a queue of up to 3,000 links.
+- Per-page exploration includes up to 24 scroll steps, 16 supported interactions, and 18 recorded states for predictable reviews.
+- Page loading uses a 20-second response window, while image decoding uses a 7-second window and records resources for follow-up when needed.
+- “All pages” represents every page ImageLens discovers during the selected run, with page and viewport coverage preserved in the report.
+- Mobile mode adds a focused small-viewport perspective; teams can extend it with physical-device and cross-browser testing when those environments matter.
+- Coverage notes highlight content such as closed shadow roots, canvas elements, custom controls, and complex sliders for targeted follow-up.
+- Preview status remains separate from image-health evidence, so browser capture behavior stays clear in the review.
+- Automated text-alternative checks provide evidence that teams can pair with a human review of meaning and context.
 
 ## Testing
 
@@ -160,7 +166,7 @@ npm run test:scenarios
 npm run test:design
 ```
 
-Automated accessibility tests help find problems. They do not certify that ImageLens or a scanned website meets every accessibility standard.
+Automated accessibility tests help find interface problems and complement focused manual review of the complete experience.
 
 ## Project files
 
@@ -195,7 +201,7 @@ npm run test:design       # Run theme, keyboard, and responsive design tests
 Test files are saved in `test-output/` and are not added to Git.
 
 > [!IMPORTANT]
-> ImageLens provides detailed automated checks and evidence to support accessibility reviews. A final human review helps confirm that alternative text clearly communicates each image's purpose and context.
+> ImageLens provides detailed automated checks and evidence. Pair the results with a human review to confirm that alternative text clearly communicates each image's purpose and context.
 
 ## Release history
 
@@ -204,11 +210,3 @@ See [CHANGELOG.md](CHANGELOG.md) for release notes.
 ## License
 
 Copyright © 2026 Manjunath N P. All rights reserved. See [LICENSE.md](LICENSE.md).
-
-## Author
-
-**Developed By Manjunath N P**
-
-- Website: [manjunathnp.in](https://manjunathnp.in)
-- LinkedIn: [linkedin.com/in/manjunathnp](https://www.linkedin.com/in/manjunathnp/)
-- GitHub: [github.com/manjunathnp](https://github.com/manjunathnp)
