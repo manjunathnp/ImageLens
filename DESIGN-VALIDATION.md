@@ -1,4 +1,4 @@
-# ImageLens 1.1.0 design upgrade
+# ImageLens 1.0.0 design release
 
 16 September 2026. Built against the implemented LinkLens shell and the shared LENS v1.0 product contract.
 

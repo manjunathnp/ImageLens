@@ -9,7 +9,7 @@
     <a href="#reports">Reports</a> ·
     <a href="#validation">Validation</a>
   </p>
-  <sub>Version 1.1.0 · Node.js 20+ · Playwright / Chromium</sub>
+  <sub>Version 1.0.0 · Node.js 20+ · Playwright / Chromium</sub>
 </div>
 
 ---
@@ -192,6 +192,10 @@ Test artifacts are written to `test-output/` and excluded from version control.
 ## Contributing
 
 Contributions and issue reports are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a change. Security-sensitive reports should follow [SECURITY.md](SECURITY.md).
+
+## Release History
+
+See [CHANGELOG.md](CHANGELOG.md) for versioned release notes.
 
 ## License
 
