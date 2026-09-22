@@ -1,0 +1,22 @@
+{
+  "name": "imagelens",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-first browser application for image integrity, responsive-resource, and text-alternative auditing",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/integration.mjs",
+    "test:scenarios": "EXPECT_FIXED=1 node tests/scenario-audit.mjs",
+    "test:design": "node tests/design-system.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  },
+  "devDependencies": {
+    "axe-core": "^4.13.0"
+  }
+}

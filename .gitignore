@@ -1,0 +1,9 @@
+node_modules/
+test-output/
+validation-output/
+playwright-report/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
