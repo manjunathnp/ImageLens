@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-09-22T02:43:37.735Z",
+  "application": "Tech Book Store",
+  "target": "http://127.0.0.1:4400/techbookstore-shop.html",
+  "scope": "Public storefront, current page, desktop and mobile viewports",
+  "source": "Fresh scan through the actual application UI. No findings, counters, markup or result data modified.",
+  "scanDate": "2026-09-22T02:43:27.497Z",
+  "pages": [
+    "http://127.0.0.1:4400/techbookstore-shop.html"
+  ],
+  "observations": 48,
+  "statuses": {
+    "pass": 48
+  },
+  "limitations": "Local practice application with seeded catalog data. Not customer results or a full-store audit. Mobile is a browser viewport, not a physical device.",
+  "tool": "ImageLens",
+  "appVersion": "1.0.0",
+  "coverageNotes": [
+    {
+      "key": "http://127.0.0.1:4400/techbookstore-shop.html|Interaction could not be inspected|Open bookstore assistant",
+      "page": "http://127.0.0.1:4400/techbookstore-shop.html",
+      "reason": "Interaction could not be inspected",
+      "detail": "Open bookstore assistant"
+    },
+    {
+      "key": "http://127.0.0.1:4400/techbookstore-shop.html|Additional interaction or embedded content may exist|Forms, unrecognized controls, closed shadow roots, canvas semantics, and exhaustive gallery journeys require manual review.",
+      "page": "http://127.0.0.1:4400/techbookstore-shop.html",
+      "reason": "Additional interaction or embedded content may exist",
+      "detail": "Forms, unrecognized controls, closed shadow roots, canvas semantics, and exhaustive gallery journeys require manual review."
+    }
+  ],
+  "galleryFilter": "ImageLens gallery and list: .webp search, Desktop viewport; result data unchanged."
+}

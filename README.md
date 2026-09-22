@@ -32,6 +32,10 @@ ImageLens can scan public pages and pages that require sign-in. It runs on your 
 
 ![ImageLens results in dark mode with summary cards, charts, filters, and an image gallery](docs/screenshots/audit-gallery-dark.png)
 
+### Tech Book Store Book Covers
+
+![Actual Tech Book Store book-cover observations filtered to desktop WebP images](docs/demo/screenshots/06-gallery.png)
+
 <table>
   <tr>
     <td width="70%"><strong>Image details</strong></td>
@@ -43,7 +47,9 @@ ImageLens can scan public pages and pages that require sign-in. It runs on your 
   </tr>
 </table>
 
-These screenshots use controlled local test data. They show how the app works and do not represent customer results.
+These screenshots show a fresh scan of **Tech Book Store**, a local practice storefront, at `http://127.0.0.1:4400/techbookstore-shop.html`. The public catalog page was inspected in desktop and mobile viewports. Results are recorded from seeded book data, not customer results or a full-store audit. See [capture provenance](docs/screenshots/capture-provenance.json), the [product demo](docs/demo/index.html), and the [exported report](docs/demo/tech-book-store-report.html).
+
+The captured ImageLens run records 48 image observations, all passing its automated checks. This does not establish accessibility conformance.
 
 ## Main features
 
