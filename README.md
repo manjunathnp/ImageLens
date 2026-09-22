@@ -189,10 +189,6 @@ npm run test:design       # Theme, responsive, keyboard and UI accessibility che
 
 Test artifacts are written to `test-output/` and excluded from version control.
 
-## Contributing
-
-Contributions and issue reports are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a change. Security-sensitive reports should follow [SECURITY.md](SECURITY.md).
-
 ## Release History
 
 See [CHANGELOG.md](CHANGELOG.md) for versioned release notes.
