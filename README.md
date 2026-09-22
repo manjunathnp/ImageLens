@@ -1,71 +1,74 @@
 <div align="center">
-  <img src="brand/imagelens-mark.svg" width="112" height="112" alt="ImageLens aperture and image frame logo">
+  <img src="brand/imagelens-mark.svg" width="112" height="112" alt="ImageLens logo">
   <h1>ImageLens</h1>
   <p><strong>Every image. A clearer picture.</strong></p>
-  <p>A local-first browser application for image integrity, responsive-resource, and text-alternative auditing.</p>
+  <p>Find broken images and common image accessibility issues across web pages.</p>
   <p>
     <a href="#installation">Installation</a> ·
-    <a href="#how-it-works">How It Works</a> ·
+    <a href="#how-to-use-imagelens">How to use</a> ·
     <a href="#reports">Reports</a> ·
-    <a href="#validation">Validation</a>
+    <a href="#testing">Testing</a>
   </p>
-  <sub>Version 1.0.0 · Node.js 20+ · Playwright / Chromium</sub>
+  <sub>Version 1.0.0 · Node.js 20+ · Playwright with Chromium</sub>
 </div>
 
 ---
 
-## Overview
+## About ImageLens
 
-ImageLens inspects images in a real browser and connects each finding to the page, viewport, resource, element, and recorded markup behind it. It helps quality engineers, developers, accessibility specialists, and web teams investigate broken resources and text-alternative issues without losing the context needed to act.
+ImageLens checks images on web pages in a real browser. It finds broken images, missing alternative text, responsive image problems, and other common issues.
 
-The app supports public pages and browser-based sign-in, flexible page selection, desktop and mobile viewport checks, visual evidence, and self-contained reports. ImageLens runs on your machine and binds its workspace to the loopback interface.
+Each finding includes useful details such as the page URL, image source, screen size, HTML element, and captured preview when available. This helps developers, testers, accessibility specialists, and content teams understand and fix problems.
+
+ImageLens can scan public pages and pages that require sign-in. It runs on your computer and supports desktop and mobile screen sizes.
 
 > [!IMPORTANT]
-> ImageLens supports investigation; it does not establish accessibility conformance. Image purpose, text-alternative quality, keyboard behavior, and application-specific journeys still require human review.
+> ImageLens helps you find issues, but it cannot confirm full accessibility compliance. A person should still review whether alternative text is useful and correct for its context.
 
 ## Screenshots
 
 ### Home
 
-![ImageLens home with URL entry and the Discover, Inspect, Resolve workflow](docs/screenshots/home-light.png)
+![ImageLens home page with URL entry and the Discover, Inspect, Resolve workflow](docs/screenshots/home-light.png)
 
-### Audit Overview and Visual Gallery
+### Results and image gallery
 
-![ImageLens audit overview in dark mode with outcome metrics, charts, filters, and image gallery](docs/screenshots/audit-gallery-dark.png)
+![ImageLens results in dark mode with summary cards, charts, filters, and an image gallery](docs/screenshots/audit-gallery-dark.png)
 
 <table>
   <tr>
-    <td width="70%"><strong>Image Evidence Inspector</strong></td>
-    <td width="30%"><strong>Responsive Home</strong></td>
+    <td width="70%"><strong>Image details</strong></td>
+    <td width="30%"><strong>Mobile view</strong></td>
   </tr>
   <tr>
-    <td><img src="docs/screenshots/image-inspector.png" alt="ImageLens inspector showing resource, selector, alt text, dimensions, findings, and markup"></td>
-    <td><img src="docs/screenshots/mobile-home-dark.png" alt="ImageLens home in a narrow mobile viewport and dark theme"></td>
+    <td><img src="docs/screenshots/image-inspector.png" alt="Image details showing the resource, selector, alt text, size, findings, and HTML"></td>
+    <td><img src="docs/screenshots/mobile-home-dark.png" alt="ImageLens home page on a small screen in dark mode"></td>
   </tr>
 </table>
 
-The screenshots use controlled local fixture data and demonstrate the interface rather than customer results.
+These screenshots use controlled local test data. They show how the app works and do not represent customer results.
 
-## Key Features
+## Main features
 
-- **Flexible page scope:** inspect the current page, every discovered same-origin page, or a selected set of pages and path sections.
-- **Public and signed-in workflows:** connect a real browser session for sites that require authentication; credentials are entered only in the target browser.
-- **Real browser inspection:** audit desktop (1366×900) and mobile (390×844) viewports in Chromium.
-- **Broad image discovery:** inspect `img`, image inputs, responsive candidates, inline SVG, CSS backgrounds, open shadow DOM, accessible frames, lazy-loaded images, disclosures, and supported tab states.
-- **Integrity evidence:** record loading, decoding, observable HTTP status, source candidates, intrinsic and rendered dimensions, and transfer-size evidence when available.
-- **Text-alternative checks:** identify missing alternatives, tooltip-only alternatives, unnamed image controls, generic or unusually long text, and cases requiring contextual review.
-- **Visual review:** switch between gallery and list views, view captured previews where browser rules allow, and use clear placeholders where preview capture is unavailable.
-- **Combined filters:** narrow results by outcome, issue type, page, viewport, and search text.
-- **Coverage reporting:** keep checked content, traversal limits, errors, and unverified states distinct.
-- **Recovery and history:** reconnect to active scans after refresh, merge report history across tabs, and warn when browser storage cannot save a completed report.
-- **Light, dark, and system themes:** share one persistent LENS appearance preference with responsive layouts and keyboard-accessible controls.
+- Scan the current page, all discovered pages, or a selected list of pages.
+- Scan public websites or sign in through a browser opened by ImageLens.
+- Check desktop and mobile views.
+- Find standard images, responsive images, CSS background images, inline SVGs, lazy-loaded images, open shadow DOM, and accessible frames.
+- Find broken sources, loading errors, decoding errors, HTTP errors, and empty image sources.
+- Find missing alt text, tooltip-only descriptions, unnamed image buttons, generic text, and unusually long text.
+- Review images in a gallery or list and open each finding for more details.
+- Filter results by status, issue, page, screen size, or search text.
+- Export reports as HTML, PDF, CSV, or JSON.
+- Use light, dark, or system theme.
+- Recover an active scan after refreshing the page.
 
 ## Requirements
 
 - Node.js 20 or newer
 - npm
-- Playwright Chromium
-- A macOS, Linux, or Windows environment supported by Playwright
+- macOS, Linux, or Windows
+
+ImageLens uses Playwright and Chromium to open and check real web pages. You do not need to install Playwright globally. The installation steps below add it only to this project.
 
 ## Installation
 
@@ -79,71 +82,74 @@ npm start
 
 Open [http://127.0.0.1:4190](http://127.0.0.1:4190) in your browser.
 
-To use another port:
+The `npx playwright install chromium` command downloads the browser used by the scanner. You usually need to run it only once.
+
+To use a different port:
 
 ```bash
 PORT=4200 npm start
 ```
 
-The server binds to `127.0.0.1` only.
+ImageLens is available only on your computer at `127.0.0.1`.
 
-## How It Works
+## How to use ImageLens
 
-1. **Enter a website or page URL.** Choose public access or a browser sign-in session.
-2. **Choose the scope.** Inspect the current page, all discovered pages, or selected pages and sections.
-3. **Review and run.** Confirm the selected pages and the validation checkpoints.
-4. **Explore the result.** Review outcome metrics, page coverage, the visual gallery, overlapping findings, and element-level evidence.
-5. **Export the audit.** Create an interactive HTML report, PDF, CSV, or structured JSON evidence.
+1. Enter a website or page URL.
+2. Choose public access or sign in through the browser opened by ImageLens.
+3. Choose the pages you want to scan.
+4. Review the selected pages and start the scan.
+5. Use the summary, charts, filters, gallery, and image details to review the results.
+6. Export the report as HTML, PDF, CSV, or JSON.
 
-For signed-in sites, complete authentication in the browser opened by ImageLens, return to the app, and confirm the session. The scanner retains that browser context through discovery and inspection. Use a suitable test account and environment for authenticated exploration.
+For a website that requires sign-in, use a test account when possible. Enter your credentials only in the website opened by ImageLens. Return to ImageLens after sign-in and confirm that the session is ready.
 
-## What ImageLens Checks
+## Checks
 
-| Area | Examples |
+| Area | What ImageLens checks |
 | --- | --- |
-| Resource integrity | Empty sources, loading and decoding failures, observable HTTP errors, corrupt image bodies, lazy content |
-| Responsive images | `srcset`, `picture` candidates, source fallbacks, viewport-specific failures |
-| Text alternatives | Missing or empty `alt`, accessible names, unnamed image controls, tooltip-only alternatives |
-| Visual quality signals | Intrinsic vs. rendered dimensions, potentially insufficient resolution, large transfer headers |
-| Embedded image surfaces | Inline SVG, CSS backgrounds and pseudo-elements, open shadow roots, accessible frames |
-| Coverage | Selected pages, checked viewports, bounded interactions, timeouts, traversal failures and unverified content |
+| Image loading | Empty sources, failed downloads, decoding errors, HTTP errors, corrupt files, and lazy-loaded images |
+| Responsive images | `srcset`, `picture`, fallback sources, and problems that appear only at a certain screen size |
+| Alternative text | Missing or empty `alt`, accessible names, tooltip-only text, unnamed image controls, generic text, and very long text |
+| Image quality | Original and displayed sizes, possible low-resolution images, and file-size information when available |
+| Other image types | Inline SVG, CSS backgrounds, pseudo-elements, open shadow DOM, and accessible frames |
+| Scan coverage | Pages and screen sizes checked, limits reached, timeouts, errors, and items that could not be verified |
 
-One image occurrence can carry multiple findings. Summary categories assign a primary outcome, while filters and exported evidence retain secondary issues.
+An image can have more than one issue. ImageLens shows a main result for the summary and keeps all issues in the detailed view and exported report.
 
 ## Reports
 
-| Format | Purpose |
+| Format | Best for |
 | --- | --- |
-| **Interactive HTML** | Self-contained report with category, issue, page, viewport, and text filters; expandable evidence; filtered CSV download |
-| **PDF** | Locally generated, print-ready report rendered with scripts disabled and external network access blocked |
-| **CSV** | One row per observation with all issue codes; spreadsheet-formula prefixes are escaped |
-| **JSON** | Complete structured audit result, responsive candidates, limits, page outcomes, and coverage gaps |
+| **HTML** | An interactive report with filters, image details, and CSV download |
+| **PDF** | A report that is easy to print or share |
+| **CSV** | Reviewing and sorting results in a spreadsheet |
+| **JSON** | Using the complete scan data in another tool or workflow |
 
-Full-audit exports contain target URLs and may contain DOM evidence and captured previews. Review reports before sharing them.
+Reports can contain page URLs, HTML details, and image previews. Review a report before sharing it.
 
-## Data and Privacy
+## Privacy
 
-- The ImageLens interface is served locally and listens only on the loopback address.
-- Credentials are never requested by the ImageLens dashboard or written to report history.
-- Signed-in browser contexts remain in server memory, expire after 30 minutes of inactivity, and close when the workflow is completed or dismissed.
-- The latest ten completed audits are stored in the browser's local storage.
-- Recent jobs are held in server memory; restarting the server clears unfinished jobs.
-- Scanning a target website sends browser requests to that site. Use an authorized test environment and account.
+- ImageLens runs locally and listens only on `127.0.0.1`.
+- The ImageLens screen does not ask for or save your sign-in details.
+- Sign-in browser sessions stay in server memory and expire after 30 minutes without activity.
+- The browser stores the latest ten completed scans.
+- Restarting the server clears unfinished jobs.
+- Scanning a website sends normal browser requests to that website. Scan only sites you are allowed to test.
 
-## Coverage and Limitations
+## Limits
 
-- Discovery is bounded to 200 pages and 3,000 queued candidates.
-- Each page uses up to 24 scroll steps, 16 supported interaction attempts, and 18 retained states.
-- Page navigation has a 20-second timeout; individual resource decoding has a 7-second timeout.
-- “All pages” means all pages discovered within these limits, not every possible application state.
-- Mobile checks use a browser viewport and are not physical-device or cross-browser validation.
-- Closed shadow roots, canvas semantics, unsupported controls, and exhaustive carousel or application journeys are not guaranteed.
-- Preview capture depends on browser canvas and cross-origin rules. A missing preview is not automatically an image failure.
-- Automated checks cannot determine whether alternative text is appropriate for its context.
+- A scan can discover up to 200 pages and queue up to 3,000 links.
+- Each page uses up to 24 scroll steps, 16 supported interactions, and 18 saved states.
+- Page loading has a 20-second timeout. Image decoding has a 7-second timeout.
+- “All pages” means all pages ImageLens can find within these limits.
+- Mobile mode uses a small browser window. It does not replace testing on a real phone or in other browsers.
+- Some content may not be available inside closed shadow DOM, canvas elements, custom controls, or complex sliders.
+- Browser security rules can block image previews. A missing preview does not always mean the image is broken.
+- Automated checks cannot decide whether alternative text correctly explains an image.
 
-## Validation
+## Testing
 
-The repository includes isolated Playwright fixtures and browser-based regression suites for scanner behavior, interface workflows, exports, recovery, themes, accessibility checks, and responsive layouts.
+The project includes automated tests for the scanner, interface, reports, recovery, themes, keyboard use, accessibility checks, and responsive layouts.
 
 ```bash
 npm test
@@ -151,47 +157,43 @@ npm run test:scenarios
 npm run test:design
 ```
 
-The suites cover broken and corrupt resources, overlapping findings, responsive candidates, shadow DOM, lazy loading, supported interactions, basic authenticated-cookie persistence, cancellation, report exports and filters, active-scan refresh recovery, multi-tab history, storage exhaustion, temporary polling failures, expired sessions, keyboard interaction, themes, enlarged text, and responsive reflow.
+Automated accessibility tests help find problems. They do not certify that ImageLens or a scanned website meets every accessibility standard.
 
-Automated accessibility checks are development evidence; they do not certify the application or scanned websites as conformant.
-
-## Project Structure
+## Project files
 
 ```text
 ImageLens/
-├── app.js                     # Client application and reporting UI
-├── server.js                  # Loopback HTTP server and job/session API
-├── index.html                 # Application entry point
-├── styles.css                 # Application and responsive styling
-├── lens-tokens.css            # Shared LENS semantic design tokens
-├── theme.js                   # System/light/dark preference handling
+├── app.js                     # App interface and reports
+├── server.js                  # Local server and scan jobs
+├── index.html                 # Main page
+├── styles.css                 # App styles
+├── lens-tokens.css            # LENS colors and design settings
+├── theme.js                   # Light and dark theme settings
 ├── src/
-│   ├── authentication.js      # Browser-session authentication checks
-│   └── scanner.js             # Discovery, browser traversal and image checks
-├── tests/                     # Integration, design and scenario suites
-├── brand/                     # Approved ImageLens SVG mark
-├── assets/fonts/              # Self-hosted Geist font and license
-└── docs/screenshots/          # Curated README screenshots
+│   ├── authentication.js      # Sign-in session checks
+│   └── scanner.js             # Page discovery and image checks
+├── tests/                     # Automated tests
+├── brand/                     # ImageLens logo
+├── assets/fonts/              # Local font files and license
+└── docs/screenshots/          # README screenshots
 ```
 
 ## Development
 
-The application uses native HTML, CSS, and JavaScript with a Node.js server and Playwright browser engine. There is no frontend build step.
-
-Useful commands:
+ImageLens uses HTML, CSS, JavaScript, Node.js, Playwright, and Chromium. There is no frontend build step.
 
 ```bash
 npm start                 # Start ImageLens on port 4190
-npm test                  # Scanner, UI, authentication and export regression suite
-npm run test:scenarios    # Recovery and unexpected-user-scenario suite
-npm run test:design       # Theme, responsive, keyboard and UI accessibility checks
+npm test                  # Run scanner and app tests
+npm run test:scenarios    # Run recovery and unusual workflow tests
+npm run test:design       # Run theme, keyboard, and responsive design tests
 ```
 
-Test artifacts are written to `test-output/` and excluded from version control.
+Test files are saved in `test-output/` and are not added to Git.
 
-## Release History
+## Release history
 
-See [CHANGELOG.md](CHANGELOG.md) for versioned release notes.
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ## License
 
